@@ -50,15 +50,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/27app', {
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('MongoDB connection error:', err));
 
+// Import auth middleware
+const authMiddleware = require('./middleware/auth');
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/tasks', require('./routes/tasks'));
-app.use('/api/habits', require('./routes/habits'));
-app.use('/api/finance', require('./routes/finance'));
-app.use('/api/projects', require('./routes/projects'));
-app.use('/api/sport', require('./routes/sport'));
-app.use('/api/ideas', require('./routes/ideas'));
-app.use('/api/team', require('./routes/team'));
+app.use('/api/tasks', authMiddleware, require('./routes/tasks'));
+app.use('/api/habits', authMiddleware, require('./routes/habits'));
+app.use('/api/finance', authMiddleware, require('./routes/finance'));
+app.use('/api/projects', authMiddleware, require('./routes/projects'));
+app.use('/api/sport', authMiddleware, require('./routes/sport'));
+app.use('/api/ideas', authMiddleware, require('./routes/ideas'));
+app.use('/api/team', authMiddleware, require('./routes/team'));
 
 // Health check
 app.get('/api/health', (req, res) => {
