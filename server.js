@@ -62,6 +62,7 @@ app.use('/api/projects', authMiddleware, require('./routes/projects'));
 app.use('/api/sport', authMiddleware, require('./routes/sport'));
 app.use('/api/ideas', authMiddleware, require('./routes/ideas'));
 app.use('/api/team', authMiddleware, require('./routes/team'));
+app.use('/api/progress1402', require('./routes/progress1402'));
 
 // Health check
 app.get('/api/health', (req, res) => {
