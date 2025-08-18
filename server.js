@@ -14,7 +14,7 @@ app.use(helmet());
 // CORS configuration - разрешаем только твой Vercel домен
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['https://fsdhjkrterut45645787rer9t3ted.vercel.app', 'http://localhost:3000'];
+  : ['https://fydgfsdgfhgsdhfghrgjhtghfgsfsdfhsgd.vercel.app', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: function (origin, callback) {
