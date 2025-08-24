@@ -54,15 +54,27 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/27app', {
 const authMiddleware = require('./middleware/auth');
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/tasks', authMiddleware, require('./routes/tasks'));
-app.use('/api/habits', authMiddleware, require('./routes/habits'));
-app.use('/api/finance', authMiddleware, require('./routes/finance'));
-app.use('/api/projects', authMiddleware, require('./routes/projects'));
-app.use('/api/sport', authMiddleware, require('./routes/sport'));
-app.use('/api/ideas', authMiddleware, require('./routes/ideas'));
-app.use('/api/team', authMiddleware, require('./routes/team'));
-app.use('/api/progress1402', require('./routes/progress1402'));
+const authRoutes = require('./routes/auth');
+const financeRoutes = require('./routes/finance');
+const habitsRoutes = require('./routes/habits');
+const ideasRoutes = require('./routes/ideas');
+const progress1402Routes = require('./routes/progress1402');
+const projectsRoutes = require('./routes/projects');
+const sportRoutes = require('./routes/sport');
+const tasksRoutes = require('./routes/tasks');
+const teamRoutes = require('./routes/team');
+const roadmapRoutes = require('./routes/roadmap');
+
+app.use('/api/auth', authRoutes);
+app.use('/api/tasks', authMiddleware, tasksRoutes);
+app.use('/api/habits', authMiddleware, habitsRoutes);
+app.use('/api/finance', authMiddleware, financeRoutes);
+app.use('/api/projects', authMiddleware, projectsRoutes);
+app.use('/api/sport', authMiddleware, sportRoutes);
+app.use('/api/ideas', authMiddleware, ideasRoutes);
+app.use('/api/team', authMiddleware, teamRoutes);
+app.use('/api/roadmap', roadmapRoutes);
+app.use('/api/progress1402', progress1402Routes);
 
 // Health check
 app.get('/api/health', (req, res) => {
